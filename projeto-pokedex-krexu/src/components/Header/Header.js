@@ -1,8 +1,12 @@
 import React from 'react'
+import Logo from "../../image/Pokemon-Logo.png"
+import HeaderStyle from './HeaderStyle'
 
 const Header = () => {
   return (
-    <div>Header</div>
+    <HeaderStyle>
+      <img src={Logo} alt="Logo com nome Pokemon" />
+    </HeaderStyle>
   )
 }
 
