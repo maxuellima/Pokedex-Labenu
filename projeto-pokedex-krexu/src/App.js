@@ -1,23 +1,16 @@
-import logo from './logo.svg';
-import './App.css';
+import { GlobalStyle } from "./GlobalStyle";
+import PokemonCard from "./components/PokemonCard/PokemonCard";
+import PokedexPage from "./Pages/PokedexPage/PokedexPage"
+import PokemonDetails from "./Pages/PokemonDetailPage/PokemonDetails"
+import PokemonListPage from "./Pages/PokemonsListPage/PokemonListPage";
+import { Router } from "./Router/Router";
+
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <GlobalStyle/>
+      <Router/>
     </div>
   );
 }

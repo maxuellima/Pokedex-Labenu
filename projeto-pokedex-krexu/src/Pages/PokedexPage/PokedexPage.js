@@ -1,8 +1,16 @@
 import React from 'react'
+import Header from '../../components/Header/Header'
 
 const PokedexPage = () => {
   return (
-    <div>PokedexPage</div>
+    <div>
+      <h1>PokedexPage</h1>
+      <Header/>
+
+
+
+
+    </div>
   )
 }
 
