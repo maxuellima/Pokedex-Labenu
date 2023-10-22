@@ -2,9 +2,14 @@ import styled from "styled-components";
 
 import React from 'react'
 
-const PokedexPageStyle = styled.div`
+export const PokedexPageStyle = styled.div`
 
 
 `
 
-export default PokedexPageStyle
+export const BackButton = styled.button`
+  height: auto;
+  padding: 0.5rem;
+  width: auto;
+`;
+

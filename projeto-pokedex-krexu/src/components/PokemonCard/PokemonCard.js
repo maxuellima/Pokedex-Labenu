@@ -7,7 +7,6 @@ const PokemonCard = () => {
 
   const navigate = useNavigate()
 
-
   return (
     <PokemonCardStyle>
       <div className="principal">

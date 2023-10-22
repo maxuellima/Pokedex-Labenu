@@ -1,6 +1,6 @@
 import React from 'react'
 import PokemonCard from '../../components/PokemonCard/PokemonCard'
-import PokemonListPageStyle from './PokemonListPageStyle'
+import {BodyConteiner, CardConteiner, PokemonListPageStyle} from './PokemonListPageStyle'
 import Header from '../../components/Header/Header'
 import { useNavigate } from 'react-router-dom'
 import { goToDetails, goToPokedex } from '../../Router/coordinator'
@@ -15,8 +15,9 @@ const PokemonListPage = () => {
         <button onClick={()=>goToPokedex(navigate)}>Ver minha pokedex</button>
       <Header/>
       </header>
-      
-      <h1>PokemonListPage</h1>
+      <BodyConteiner>
+      <h1>Todos os pokemons</h1>
+      <CardConteiner>
       <PokemonCard/>
       <PokemonCard/>
       <PokemonCard/>
@@ -24,8 +25,11 @@ const PokemonListPage = () => {
       <PokemonCard/>
       <PokemonCard/>
       <PokemonCard/>
-      <PokemonCard/>     
+      <PokemonCard/>
+      </CardConteiner> 
+      </BodyConteiner>    
       </PokemonListPageStyle>
+      
   )
 }
 
