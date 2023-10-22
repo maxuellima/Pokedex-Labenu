@@ -1,10 +1,11 @@
 import React from 'react'
 import styled from 'styled-components'
 
-const PokemonListPageStyle = styled.div`
+export const PokemonListPageStyle = styled.div`
 display: flex;
 flex-wrap: wrap;
-justify-content: center;
+flex-direction: column;
+justify-content: space-around;
 gap: 1em;
 width: 100vw;
 
@@ -14,6 +15,19 @@ header{
     justify-content: start;
     align-items: center;
 }
+`
+
+export const BodyConteiner = styled.main`
+background-color: black;
+
+`
+export const CardConteiner = styled.div`
+
+display: flex;
+flex-wrap: wrap;
+justify-content: space-around;
+row-gap: 1rem;
+align-items: center;
 
 `
 

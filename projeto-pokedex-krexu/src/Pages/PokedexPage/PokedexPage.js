@@ -1,17 +1,24 @@
-import React from 'react'
-import Header from '../../components/Header/Header'
+import React from "react";
+import Header from "../../components/Header/Header";
+import PokemonCard from "../../components/PokemonCard/PokemonCard";
+import { BackButton } from "./PokedexPageStyle";
+import { useNavigate } from "react-router-dom";
+import { goBack } from "../../Router/coordinator";
 
 const PokedexPage = () => {
+
+  const navigate = useNavigate()
   return (
     <div>
-      <h1>PokedexPage</h1>
-      <Header/>
+      <div>
+      <BackButton onClick={()=>goBack(navigate)}> {`<`}Todos os pokemons</BackButton>
+      <Header />
 
 
-
-
+      </div>
+      <PokemonCard />
     </div>
-  )
-}
+  );
+};
 
-export default PokedexPage
+export default PokedexPage;

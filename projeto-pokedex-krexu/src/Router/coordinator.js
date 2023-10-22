@@ -11,4 +11,9 @@ export const goToListPokemon = (navigate)=>{
 
 export const goToDetails = (navigate) =>{
     navigate('/details')
+
+}
+
+export const goBack = (navigate) =>{
+    navigate(-1)
 }
