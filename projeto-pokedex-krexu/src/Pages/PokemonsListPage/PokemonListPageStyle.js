@@ -18,15 +18,15 @@ header{
 `
 
 export const BodyConteiner = styled.main`
-background-color: black;
+background-color: #5E5E5E;
 
 `
 export const CardConteiner = styled.div`
 
 display: flex;
 flex-wrap: wrap;
-justify-content: space-around;
-row-gap: 1rem;
+justify-content: space-evenly;
+row-gap: 3rem;
 align-items: center;
 
 `

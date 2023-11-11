@@ -13,10 +13,8 @@ const PokedexPage = () => {
       <div>
       <BackButton onClick={()=>goBack(navigate)}> {`<`}Todos os pokemons</BackButton>
       <Header />
-
-
       </div>
-      <PokemonCard />
+      <PokemonCard/>
     </div>
   );
 };
