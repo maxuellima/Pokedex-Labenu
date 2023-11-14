@@ -7,9 +7,14 @@ width: 70vw;
 height: 15vh;
 display: flex;
 justify-content: center;
+align-items: center;
 
 img{
-    height: 16vh;
+    height: 18vh;
+    &:hover{
+        cursor: pointer;
+    
+    }
 }
 
 `

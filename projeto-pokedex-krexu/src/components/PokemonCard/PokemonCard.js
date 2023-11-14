@@ -1,28 +1,37 @@
-import React, { useEffect, useState } from "react";
-import {PokemonCardStyle, PartCard, NameContainer, TopContainer, BottonContainer, PokemonContainer, PokebolaContainer, DetailsContainer, CatchContainer} from "./PokemonCardStyle";
-import { useNavigate } from "react-router-dom";
+import React, { useContext, useEffect, useState } from "react";
+import {PokemonCardStyle, PartCard, NameContainer, TopContainer, BottonContainer, PokemonContainer, PokebolaContainer, DetailsContainer, CatchContainer, PokemonImage, DeleteContainer} from "./PokemonCardStyle";
+import { useLocation, useNavigate } from "react-router-dom";
 import { goToDetails } from "../../Router/coordinator";
 import axios from "axios";
 import pokebola from "../../image/pokebola 2.png"
+import { GlobalContext } from "../../contexts/GlobalContexts";
 
 const PokemonCard = (props) => {
+
+  const context = useContext(GlobalContext)
+
+  const {addToPokedex, removeFromPokedex, setPokeDetails} = context;
+  
+    //Recebendo do pokelist para poder acessar mais características do pokemon
+    const {pokemonsUrl} = props;
+
+  //Estado para armazenar cada pokemon renderizado
+  const [pokemon, setPokemon] = useState({})
+
+  //Usado para alternar o botão adicionar/remover do card a partir do path
+  const location = useLocation();
   
   //Para poder mudar de página
   const navigate = useNavigate()
 
-  const [pokemon, setPokemon] = useState({})
-
-  //Recebendo do pokelist para poder acessar mais características do pokemon
-  const {pokemonsUrl} = props;
 
   //Puxando o segundo link da API onde tem mais características dos pokemons
   const dataPokemons = async () =>{
     try{
       const response = await axios.get(pokemonsUrl);
-      setPokemon(response.data)
-      
+      setPokemon(response.data)      
     } catch(error){
-      console.log('Error', error);
+      console.log('Error', error.response);
     }
   }
 
@@ -31,27 +40,43 @@ const PokemonCard = (props) => {
     dataPokemons();
   },[])
 
-  const imagemPokemon = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemon.id}.png`
+const detalhes = () =>{
   
+    goToDetails(navigate,pokemon.name); 
+    setPokeDetails(pokemon)
+}
+
+const type = pokemon.types && pokemon.types[0].type.name
+
   return (
-    <PokemonCardStyle>
+    <PokemonCardStyle type = {type}>
       <TopContainer>
       <NameContainer>
-        <p>#{pokemon.id}</p>
+        <p>#{pokemon.id < 10 ? `0${pokemon.id}` : pokemon.id}</p>
         <h2>{pokemon.name}</h2>
+        <div>
+
+        </div>
       </NameContainer>
       <PokemonContainer>
-      <img src={imagemPokemon} height="170rem" alt={pokemon.name} />
+      <PokemonImage src={pokemon.sprites?.other["official-artwork"].front_default} alt={pokemon.name} />
       </PokemonContainer>
       <PokebolaContainer><img src={pokebola} alt="pokebola transparente" /></PokebolaContainer>
       </TopContainer>
       <BottonContainer>
       <DetailsContainer>
-        <p onClick={()=>goToDetails(navigate)}>Detalhes</p>
+        <p onClick={detalhes}>Detalhes</p>
       </DetailsContainer>
+      
+      {location.pathname === "/" ? (
       <CatchContainer>
-        <button>Capturar!</button>
+        <button onClick={()=>addToPokedex(pokemon)}>Capturar!</button>
       </CatchContainer>
+      ) : 
+      <DeleteContainer>
+        <button onClick={()=>removeFromPokedex(pokemon)}>Excluir</button>
+      </DeleteContainer>
+      }
       </BottonContainer>
     </PokemonCardStyle>
   );

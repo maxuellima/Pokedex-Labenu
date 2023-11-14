@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import PokemonCard from "../../components/PokemonCard/PokemonCard";
 import {
   BodyConteiner,
@@ -7,28 +7,36 @@ import {
 } from "./PokemonListPageStyle";
 import Header from "../../components/Header/Header";
 import { useNavigate } from "react-router-dom";
-import { goToDetails, goToPokedex } from "../../Router/coordinator";
-import axios from "axios";
-import { BASE_URL } from "../../components/constants/url";
+import { goToPokedex } from "../../Router/coordinator";
+import { GlobalContext } from "../../contexts/GlobalContexts";
 
-const imagem = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/1.svg"
-
-const PokemonListPage = (props) => {
+const PokemonListPage = () => {
   const navigate = useNavigate();
 
-  const {pokeList, setPokeList} = props
+  const context = useContext(GlobalContext)
+
+  const {pokeList, pokedex} = context
+
+  const filteredPokeList = () =>
+    pokeList.filter(
+      (initialPokemonList) =>
+        !pokedex.find(
+          (pokemonInPokedex) => initialPokemonList.name === pokemonInPokedex.name
+        )
+    );
+
 
     return (
     <PokemonListPageStyle>
       <header>
-        <button onClick={() => goToPokedex(navigate)}>Ver minha pokedex</button>
         <Header />
+        <button onClick={() => goToPokedex(navigate)}>Ver minha pokedex</button>
       </header>
       <BodyConteiner>
-        <h1>Todos os pokemons</h1>
+        <h1>Todos pokemons</h1>
         <CardConteiner>
-          {pokeList.map((pokemon)=>{
-            return <PokemonCard key={pokemon.name} setPokeList={setPokeList}  pokemonsUrl={pokemon.url}/>
+          {filteredPokeList().map((pokemon)=>{
+            return <PokemonCard key={pokemon.name} pokemonsUrl={pokemon.url}/>
           })}
         </CardConteiner>
       </BodyConteiner>
