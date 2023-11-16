@@ -10,10 +10,12 @@ const PokemonCard = (props) => {
 
   const context = useContext(GlobalContext)
 
-  const {addToPokedex, removeFromPokedex, setPokeDetails} = context;
+  const {addToPokedex, removeFromPokedex, setPokeDetails, pokeList} = context;
+
+  console.log(pokeList)
   
     //Recebendo do pokelist para poder acessar mais características do pokemon
-    const {pokemonsUrl} = props;
+    const {pokemonsUrl, pokemons} = props;
 
   //Estado para armazenar cada pokemon renderizado
   const [pokemon, setPokemon] = useState({})
@@ -70,7 +72,7 @@ const type = pokemon.types && pokemon.types[0].type.name
       
       {location.pathname === "/" ? (
       <CatchContainer>
-        <button onClick={()=>addToPokedex(pokemon)}>Capturar!</button>
+        <button onClick={()=>addToPokedex(pokemons)}>Capturar!</button>
       </CatchContainer>
       ) : 
       <DeleteContainer>

@@ -36,7 +36,7 @@ const PokemonListPage = () => {
         <h1>Todos pokemons</h1>
         <CardConteiner>
           {filteredPokeList().map((pokemon)=>{
-            return <PokemonCard key={pokemon.name} pokemonsUrl={pokemon.url}/>
+            return <PokemonCard key={pokemon.name} pokemonsUrl={pokemon.url} pokemons={pokemon}/>
           })}
         </CardConteiner>
       </BodyConteiner>
