@@ -10,9 +10,10 @@ function App() {
   const [pokedex, setPokedex] = useState([]);
   const [pokeDetails, setPokeDetails] = useState([]);
 
+  //Puxando os pokemons da API e renderizando na tela. 
   useEffect(() => {
     axios
-      .get(`${BASE_URL}?limit=45&offset=0`)
+      .get(`${BASE_URL}?limit=80&offset=0`)
       .then((res) => {
         setPokeList(res.data.results);
       })
@@ -20,6 +21,15 @@ function App() {
         console.log(err.response);
       });
   }, []);
+
+  //Puxando os pokemons guardados na pokedex e renderizando na tela
+  useEffect(()=>{
+    const getPokemons = JSON.parse(localStorage.getItem('pokedex'))
+
+    if(getPokemons){
+      setPokedex([...getPokemons])
+    }
+  },[])
 
   const addToPokedex = (pokemonToAdd) => {
     const isAlreadyOnPokedex = pokedex.find(
@@ -42,9 +52,6 @@ function App() {
     localStorage.setItem('pokedex', JSON.stringify(newPokedex));
   };
 
-  // const addToDetailsPage = (detailsPokemon) => {
-  //   setPokeDetails([detailsPokemon]);
-  // };
 
   const context = {
     pokeList,

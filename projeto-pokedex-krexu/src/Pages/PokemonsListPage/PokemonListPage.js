@@ -25,7 +25,6 @@ const PokemonListPage = () => {
         )
     );
 
-
     return (
     <PokemonListPageStyle>
       <header>

@@ -21,6 +21,28 @@ const getColors = {
  'steel': '#C8C8C8'
 }
 
+const getTypeColors = {
+  "water": "#33A4F5" ,
+  "bug" : "#316520",
+  "dark": "#5C5365",
+  "dragon": "#0A6CBF",
+  'electric': '#F4D23B',
+  'fairy': '#EC8FE6',
+  'fighting': '#CE4069',
+  'fire':'#F44900',
+  'flying': '#6892B0',
+  'ghost':'#5269AC',
+  'grass':'#70B873',
+  'ground': '#D97745',
+  'ice':'#74CEC0',
+'normal':'#8A8A8A',
+'poison':'#AD61AE',
+'psychic':'#F67176',
+ 'rock':'#C7B78B',
+ 'steel': '#BBB'
+}
+
+
 export const PokemonCardStyle = styled.section`
   height: 14.125rem;
   width: 30.5rem;
@@ -33,6 +55,21 @@ export const PokemonCardStyle = styled.section`
   background-color: ${props => getColors[props.type] };
   flex-shrink: 0;
   border: none;
+
+  @media screen and (min-device-width : 481px) and (max-device-width : 800px) {
+/* tablets */
+
+height: 14.125rem;
+  width: 30.5rem;
+  border: 1px solid black;
+  display: flex;
+  flex-wrap: wrap;
+  background-color: blue;
+  border-radius: 2rem;
+  position: relative;
+  flex-shrink: 0;
+  border: none;
+}
 `;
 export const TopContainer = styled.div`
   width: 28vw;
@@ -40,25 +77,73 @@ export const TopContainer = styled.div`
   display: flex;
 `;
 export const NameContainer = styled.div`
-  width: 12vw;
-  height: 10vh;
+  width: 16vw;
+  height: 20vh;
   display: flex;
-  justify-content: center;
   flex-direction: column;
+  justify-content: start;
+  align-items: start;
+  row-gap: 1rem;
   position: absolute;
-  top: 5%;
   left: 5%;
+`;
+export const ContainerToIcon = styled.div`
+width: 14vw;
+display: flex;
+justify-content: start;
+align-items: center;
+column-gap: 0.5rem;
+`
 
-  p {
+
+export const NameIdContainer = styled.div`
+height: 10vh;
+display: flex;
+flex-direction: column;
+justify-content: start;
+
+p {
     color: white;
     font-size: 1rem;
+    margin-top: 10%;
   }
 
-  h2 {
+  
+`
+
+export const PokemonNameContainer = styled.div`
+height: 15vh;
+width: 10vw;
+display: flex;
+position: relative;
+`
+
+export const NamePokemon = styled.h2`
     color: white;
     font-size: 2rem;
-  }
-`;
+    position: absolute;
+
+`
+
+export const IconContainer = styled.div`
+display: inline-flex;
+height: 4vh;
+width: 6vw;
+justify-content: space-around;
+align-items: center;
+border-radius: 0.5rem;
+border: 1px dashed rgba(255, 255, 255, 0.47);
+background: ${props => getTypeColors[props.type] };
+
+img{
+  height: 2vh;
+}
+
+p{
+  color: white;
+}
+
+`
 
 export const PokemonContainer = styled.div`
   position: absolute;
@@ -124,7 +209,6 @@ export const CatchContainer = styled.div`
   bottom: 10%;
   right: 5%;
   
-  
 
   button {
     width: 9.125rem;
@@ -146,7 +230,6 @@ export const CatchContainer = styled.div`
     }
   }
 `
-
 export const DeleteContainer = styled.div`
   height: 5vh;
   width: 9vw;
