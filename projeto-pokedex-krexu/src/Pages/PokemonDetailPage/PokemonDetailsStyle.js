@@ -22,6 +22,27 @@ const getBackground = {
   steel: "#C8C8C8",
 };
 
+const getTypeColors = {
+  "water": "#33A4F5" ,
+  "bug" : "#316520",
+  "dark": "#5C5365",
+  "dragon": "#0A6CBF",
+  'electric': '#F4D23B',
+  'fairy': '#EC8FE6',
+  'fighting': '#CE4069',
+  'fire':'#F44900',
+  'flying': '#6892B0',
+  'ghost':'#5269AC',
+  'grass':'#70B873',
+  'ground': '#D97745',
+  'ice':'#74CEC0',
+'normal':'#8A8A8A',
+'poison':'#AD61AE',
+'psychic':'#F67176',
+ 'rock':'#C7B78B',
+ 'steel': '#BBB'
+}
+
 export const PokemonDetailsStyle = styled.div`
   width: 100vw;
   height: auto;
@@ -203,7 +224,7 @@ export const ContainerDetailsTop = styled.div`
 `;
 
 export const ContainerDetailsNameId = styled.div`
-  width: 13vw;
+  width: 15vw;
   height: 15vh;
   display: flex;
   flex-direction: column;
@@ -228,7 +249,33 @@ export const ContainerDetailsNameId = styled.div`
     font-weight: 700;
     line-height: normal;
   }
+ 
 `;
+
+export const ContainerWithIcons = styled.div`
+width: 12vw;
+display: flex;
+justify-content: start;
+align-items: center;
+column-gap: 0.5rem;
+`
+
+export const IconContainer = styled.div`
+display: inline-flex;
+height: 4vh;
+width: 6vw;
+justify-content: space-around;
+align-items: center;
+border-radius: 0.5rem;
+border: 1px dashed rgba(255, 255, 255, 0.47);
+background: ${props => getTypeColors[props.type] };
+
+img{
+  height: 2vh;
+}
+
+`
+
 export const ContainerDetailsImagePokemon = styled.div`
   width: 13vw;
   height: 15vh;

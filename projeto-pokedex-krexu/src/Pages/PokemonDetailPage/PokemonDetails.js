@@ -10,8 +10,10 @@ import {
   ContainerDetailsTop,
   ContainerMoves,
   ContainerNameDetails,
+  ContainerWithIcons,
   DetailsMoves,
   HeaderDetails,
+  IconContainer,
   ImageAside,
   MainContainer,
   PokebolaCenter,
@@ -23,6 +25,7 @@ import {
   TopicHeader,
   TypesAside,
 } from "./PokemonDetailsStyle";
+import getTypes from "../../colors/types";
 import { useNavigate } from "react-router-dom";
 import { goBack } from "../../Router/coordinator";
 import pokebola from "../../image/pokebola 2.png";
@@ -31,11 +34,25 @@ import { GlobalContext } from "../../contexts/GlobalContexts";
 const PokemonDetails = () => {
   const navigate = useNavigate();
 
-  const { pokeDetails} = useContext(GlobalContext);
+  const { pokeDetails, addToPokedex, removeFromPokedex } = useContext(GlobalContext);
 
   console.log(pokeDetails);
 
-  const type = pokeDetails.types && pokeDetails.types[0].type.name
+
+  //Buscar o tipo de pokemon e passar por props para mudar a cor do background
+  const typePokemon = pokeDetails.types && pokeDetails.types[0].type.name;
+
+  //Renderizar o ícone de tipo de pokemon na tela
+  const renderIcon = pokeDetails.types?.map((type) => (
+    <IconContainer type={type.type.name}>
+      <img
+        key={type.type.name}
+        src={getTypes(type.type.name)}
+        alt={type.type.name}
+      />
+      <p>{type.type.name}</p>
+    </IconContainer>
+  ));
 
   return (
     <PokemonDetailsStyle>
@@ -52,7 +69,7 @@ const PokemonDetails = () => {
         <ContainerNameDetails>
           <h1>Detalhes</h1>
         </ContainerNameDetails>
-        <ContainerDetails type={type}>
+        <ContainerDetails type={typePokemon}>
           <PokebolaImg src={pokebola} alt="pokebola transparente" />
           <ImageAside>
             <PokemonImage>
@@ -90,6 +107,9 @@ const PokemonDetails = () => {
                   #{pokeDetails.id < 10 ? `0${pokeDetails.id}` : pokeDetails.id}
                 </p>
                 <h2>{pokeDetails.name}</h2>
+                <ContainerWithIcons>
+                  {pokeDetails.types && renderIcon}
+                </ContainerWithIcons>
               </ContainerDetailsNameId>
 
               <ContainerDetailsImagePokemon>
@@ -103,17 +123,16 @@ const PokemonDetails = () => {
             </ContainerDetailsTop>
             <ContainerMoves>
               <DetailsMoves>
-              <h2>Moves:</h2>
-              <div>
-              <p>{pokeDetails.moves[0]?.move.name}</p>
-              <p>{pokeDetails.moves[1]?.move.name}</p>
-              <p>{pokeDetails.moves[2]?.move.name}</p>
-              <p>{pokeDetails.moves[3]?.move.name}</p>
-              <p>{pokeDetails.moves[4]?.move.name}</p>
-              </div>
-            </DetailsMoves>
+                <h2>Moves:</h2>
+                <div>
+                  <p>{pokeDetails.moves[0]?.move.name}</p>
+                  <p>{pokeDetails.moves[1]?.move.name}</p>
+                  <p>{pokeDetails.moves[2]?.move.name}</p>
+                  <p>{pokeDetails.moves[3]?.move.name}</p>
+                  <p>{pokeDetails.moves[4]?.move.name}</p>
+                </div>
+              </DetailsMoves>
             </ContainerMoves>
-            
           </TypesAside>
         </ContainerDetails>
       </MainContainer>

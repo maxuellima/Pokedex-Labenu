@@ -37,27 +37,33 @@ export const MainContainer = styled.main`
   width: 100vw;
   min-height: 100vh;
   background-color: #5e5e5e;
-  overflow: hidden;
+  /* overflow: hidden; */
   display: flex;
   flex-direction: column;
   position: relative;
 
-  h2 {
-    width: 100vw;
-    padding-bottom: 2rem;
-    padding-top: 2rem;
-    margin-left: 2rem;
-    color: #fff;
-    font-family: Poppins;
-    font-size: 2rem;
-    font-style: normal;
-    font-weight: 700;
-    line-height: normal;
-
-  }
 `;
+
+export const SubHeaderContainer = styled.div`
+width: 80vw;
+margin-left: 6%;
+`
+
+export const SubHeaderName = styled.h2`
+padding-bottom: 2rem;
+color: #fff;
+font-family: Poppins;
+font-size: 2rem;
+font-style: normal;
+font-weight: 700;
+line-height: normal;
+`
+  /* width: 100vw; */
+
+
+
 export const ContainerPokedex = styled.div`
-  width: 100vw;
+  /* width: 100vw; */
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;

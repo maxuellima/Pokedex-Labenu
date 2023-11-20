@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import Header from "../../components/Header/Header";
 import PokemonCard from "../../components/PokemonCard/PokemonCard";
-import { BackButton, ContainerHeader, ContainerPokedex, MainContainer, PokedexPageStyle } from "./PokedexPageStyle";
+import { BackButton, ContainerHeader, ContainerPokedex, MainContainer, PokedexPageStyle, SubHeader, SubHeaderContainer, SubHeaderName } from "./PokedexPageStyle";
 import { useNavigate } from "react-router-dom";
 import { goBack } from "../../Router/coordinator";
 import { GlobalContext } from "../../contexts/GlobalContexts";
@@ -21,7 +21,9 @@ const PokedexPage = () => {
       <Header />
       </ContainerHeader>
       <MainContainer>
-      <h2>Meus pokemons</h2>
+        <SubHeaderContainer>
+      <SubHeaderName>Meus pokemons</SubHeaderName>
+      </SubHeaderContainer>
       <ContainerPokedex>
       {pokedex.map((pokemon) => 
       <PokemonCard

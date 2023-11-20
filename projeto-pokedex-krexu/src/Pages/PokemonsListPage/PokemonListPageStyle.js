@@ -44,6 +44,20 @@ export const PokemonListPageStyle = styled.div`
       }
     }
   }
+
+
+  @media screen and (min-device-width : 481px) and (max-device-width : 800px) {
+/* tablets */
+
+display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  justify-content: space-around;
+  gap: 1em;
+  width: 100vw;
+  position: relative;
+  height: auto;
+}
 `;
 
 export const BodyConteiner = styled.main`
